@@ -1,0 +1,5 @@
+{
+  "name": "Kartotek — høst LinkedIn-beskeder",
+  "description": "Åbner hver samtale i LinkedIns indbakke, samler hovedet og beskederne, og afleverer dem til berig-linjen. Kører uovervåget på en browser-tray: rene læse-verber.",
+  "version": "1.0.0"
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "from": "host",
+    "to": "hostet",
+    "condition": "success"
+  },
+  {
+    "from": "host",
+    "to": "fejlet",
+    "condition": "failure"
+  }
+]
