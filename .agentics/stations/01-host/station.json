@@ -3,6 +3,8 @@
   "name": "HØST",
   "trigger": {
     "type": "dispatch_worker",
+    "idleTimeoutMinutes": 2,
+    "maxTimeoutMinutes": 30,
     "labels": [],
     "recipe": {
       "document": {
@@ -27,12 +29,12 @@
           {
             "id": "vent",
             "do": "assert",
-            "selector": "li.msg-conversation-listitem .msg-conversation-listitem__link"
+            "selector": "li.msg-conversation-listitem a.msg-conversation-listitem__link"
           },
           {
             "id": "traade",
             "do": "collect",
-            "selector": "li.msg-conversation-listitem .msg-conversation-listitem__link",
+            "selector": "li.msg-conversation-listitem a.msg-conversation-listitem__link",
             "as": "traade"
           },
           {
