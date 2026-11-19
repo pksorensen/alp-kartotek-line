@@ -9,7 +9,7 @@
     "recipe": {
       "document": {
         "name": "linkedin-beskeder",
-        "description": "Høster dine LinkedIn-samtaler til det personlige kartotek: én række pr. besked, med samtale-id'et indlejret i beskedens URN. Selektorerne er målt mod et levende login 15/11 — kun msg-*-klasser, fordi LinkedIn sender hashede klassenavne ved siden af dem.",
+        "description": "Høster dine LinkedIn-samtaler til det personlige kartotek: én række pr. besked, med samtale-id'et indlejret i beskedens URN. Selektorerne er målt mod et levende login 15/11 — kun msg-*-klasser, fordi LinkedIn sender hashede klassenavne ved siden af dem. Samtalerne åbnes med `openEach`, fordi listen ingen ankre har: der er intet `href` at gå til, og samtalens id står i nul attributter på siden.",
         "profile": "linkedin",
         "params": {
           "sidstSete": {
@@ -32,41 +32,17 @@
             "selector": "li.msg-conversation-listitem .msg-conversation-listitem__link"
           },
           {
-            "id": "traade",
-            "do": "collect",
-            "selector": "li.msg-conversation-listitem .msg-conversation-listitem__link",
-            "as": "traade"
-          },
-          {
-            "id": "gennemloeb",
-            "do": "forEach",
-            "in": "traade",
-            "itemVar": "t",
-            "steps": [
-              {
-                "id": "aabn-traad",
-                "do": "goto",
-                "url": "{{t.href}}"
-              },
-              {
-                "id": "vent-swap",
-                "do": "wait",
-                "delayMs": 2500
-              },
-              {
-                "id": "vent-traad",
-                "do": "assert",
-                "selector": "li.msg-s-message-list__event"
-              },
+            "id": "samtaler",
+            "do": "openEach",
+            "target": "linkedin:conversations",
+            "as": "traad",
+            "maxItems": 25,
+            "collect": [
               {
                 "id": "hoved",
                 "do": "collect",
                 "selector": "div.msg-thread",
                 "as": "hoveder",
-                "append": true,
-                "stamp": {
-                  "traad": "{{tIndex}}"
-                },
                 "fields": {
                   "profil": "a.msg-thread__link-to-profile @href",
                   "visitkort": "a.msg-thread__link-to-profile"
@@ -77,10 +53,6 @@
                 "do": "collect",
                 "selector": "li.msg-s-message-list__event",
                 "as": "beskeder",
-                "append": true,
-                "stamp": {
-                  "traad": "{{tIndex}}"
-                },
                 "fields": {
                   "urn": "[data-event-urn] @data-event-urn",
                   "afsender": ".msg-s-message-group__name",
