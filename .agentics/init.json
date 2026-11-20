@@ -1,0 +1,14 @@
+{
+  "createTask": {
+    "title": "Høst LinkedIn-beskeder",
+    "description": "Åbner LinkedIn-indbakken i din egen Edge-profil og læser samtalerne igennem — én række pr. besked. Nye personer oprettes i kartoteket undervejs og sendes videre til berigelse."
+  },
+  "schedule": {
+    "name": "Høst hver time",
+    "cadence": { "kind": "hourly", "minute": 5, "timeZone": "Europe/Copenhagen" },
+    "task": {
+      "title": "Høst LinkedIn-beskeder",
+      "description": "Timehøst. Sover laptoppen, springer overlapsvagten runden over uden at lægge en ny opgave — så kadencen må gerne være kortere end tilgængeligheden."
+    }
+  }
+}
